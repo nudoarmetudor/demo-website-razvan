@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Răzvan-Mihail Corman | Psychology Student & Clinical Researcher</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & Merriweather -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: {
+                            50: '#f4f7f5',
+                            100: '#e3ebe6',
+                            200: '#c7d7ce',
+                            500: '#698a78',
+                            600: '#527261',
+                            700: '#425b4e',
+                            800: '#384b41',
+                            900: '#2f3f37',
+                        },
+                        cream: {
+                            50: '#fdfbf7',
+                            100: '#f8f4ec',
+                            200: '#efe6d5',
+                        },
+                        slateblue: {
+                            600: '#3b5a70',
+                            700: '#2c475a',
+                            800: '#1e3343',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8f4ec;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c7d7ce;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #698a78;
+        }
+
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.90);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Subtle shadows */
+        .card-soft-shadow {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-cream-50 text-slate-800 font-sans antialiased selection:bg-sage-200 selection:text-sage-900">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-sage-100/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-sage-600 text-white flex items-center justify-center font-serif font-bold text-base group-hover:bg-sage-700 transition">
+                    RC
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif font-bold text-slate-900 text-lg leading-tight tracking-tight">Răzvan-Mihail Corman</span>
+                    <span class="text-xs text-sage-600 font-medium">UPSC Chișinău • Psychology & Clinical Focus</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-7 text-sm font-medium text-slate-600">
+                <a href="#about" class="hover:text-sage-700 transition">About</a>
+                <a href="#cv" class="hover:text-sage-700 transition">Academic CV</a>
+                <a href="#showcase" class="hover:text-sage-700 transition">Chess & Cognition</a>
+                <a href="#articles" class="hover:text-sage-700 transition">Insights</a>
+                <a href="#skills" class="hover:text-sage-700 transition">Competencies</a>
+                <a href="#contact" class="hover:text-sage-700 transition">Contact</a>
+            </nav>
+
+            <div class="hidden md:flex items-center space-x-3">
+                <button onclick="openCvModal()" class="px-4 py-2 rounded-xl border border-sage-600 text-sage-700 font-medium text-sm hover:bg-sage-50 transition flex items-center space-x-2">
+                    <i class="fa-solid fa-file-arrow-down text-xs"></i>
+                    <span>Get CV</span>
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-700 hover:bg-sage-100 transition focus:outline-none">
+                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-50 border-b border-sage-200 px-6 py-4 space-y-3">
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium hover:text-sage-700">About</a>
+            <a href="#cv" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium hover:text-sage-700">Academic CV</a>
+            <a href="#showcase" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium hover:text-sage-700">Chess & Cognition</a>
+            <a href="#articles" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium hover:text-sage-700">Insights</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium hover:text-sage-700">Competencies</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium hover:text-sage-700">Contact</a>
+            <div class="pt-2 border-t border-sage-200">
+                <button onclick="openCvModal(); toggleMobileMenu();" class="w-full py-2.5 rounded-xl bg-sage-600 text-white font-medium text-center">
+                    <i class="fa-solid fa-file-arrow-down mr-2"></i>Download CV
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-32 pb-20 md:pt-40 md:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-sage-100 text-sage-800 text-xs font-semibold tracking-wide uppercase">
+                    <span class="w-2 h-2 rounded-full bg-sage-600 animate-pulse"></span>
+                    <span>UPSC Chișinău • Psychology Student</span>
+                </div>
+
+                <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+                    Integrating cognitive analytical discipline & evidence-based clinical psychology.
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-600 font-light leading-relaxed max-w-2xl">
+                    Hello! I am <strong>Răzvan-Mihail Corman</strong>, a dedicated psychology student at <em>Universitatea Pedagogică de Stat „Ion Creangă” din Chișinău (UPSC)</em> and a competitive FIDE chess player. I apply structured analytical thinking, decision-making theory, and empathy to human behavior and clinical practice.
+                </p>
+
+                <div class="pt-2 flex flex-wrap gap-4 items-center">
+                    <a href="#showcase" class="px-6 py-3.5 rounded-xl bg-sage-600 text-white font-medium hover:bg-sage-700 shadow-md hover:shadow-lg transition flex items-center space-x-2">
+                        <span>Explore Projects & Research</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <button onclick="openCvModal()" class="px-6 py-3.5 rounded-xl border border-slate-300 hover:border-sage-600 text-slate-700 font-medium bg-white hover:bg-sage-50 transition flex items-center space-x-2">
+                        <i class="fa-regular fa-file-lines"></i>
+                        <span>Interactive CV</span>
+                    </button>
+                    <a href="#contact" class="px-6 py-3.5 rounded-xl text-slate-600 font-medium hover:text-sage-700 transition">
+                        Get in Touch
+                    </a>
+                </div>
+
+                <!-- Academic Affiliation Pills -->
+                <div class="pt-6 border-t border-sage-200/80 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-slate-600">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-building-columns text-sage-600 text-base"></i>
+                        <span><strong>UPS „Ion Creangă”</strong><br/>Chișinău, Moldova</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-graduation-cap text-sage-600 text-base"></i>
+                        <span><strong>Psychology Major</strong><br/>Admission Grade: 9.43</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-chess-king text-sage-600 text-base"></i>
+                        <span><strong>FIDE Rated Player</strong><br/>1892 Standard Rating</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Summary Card -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-md">
+                    <div class="absolute -top-6 -left-6 w-72 h-72 bg-sage-200/50 rounded-full blur-3xl -z-10"></div>
+                    <div class="absolute -bottom-6 -right-6 w-72 h-72 bg-cream-200/80 rounded-full blur-3xl -z-10"></div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-sage-100 card-soft-shadow space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 rounded-2xl bg-sage-600 text-white flex items-center justify-center text-2xl font-serif font-bold shadow-sm">
+                                RC
+                            </div>
+                            <div>
+                                <h3 class="font-serif font-bold text-xl text-slate-900">Răzvan-Mihail Corman</h3>
+                                <p class="text-xs font-semibold text-sage-700">Student & Researcher in Psychology</p>
+                                <p class="text-xs text-slate-500">Chișinău, Republic of Moldova</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 pt-2 text-sm text-slate-600">
+                            <div class="p-3 bg-cream-50 rounded-xl border border-cream-200 flex items-start space-x-3">
+                                <i class="fa-solid fa-quote-left text-sage-500 mt-1"></i>
+                                <p class="italic text-xs text-slate-700">"Mastering mental clarity under pressure in competitive chess translates directly into my approach to cognitive evaluation, emotional regulation, and clinical empathy."</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3 pt-2">
+                                <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                                    <div class="text-2xl font-bold text-sage-700">9.43</div>
+                                    <div class="text-xs text-slate-500 font-medium">UPSC Academic Index</div>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                                    <div class="text-2xl font-bold text-sage-700">1892</div>
+                                    <div class="text-xs text-slate-500 font-medium">FIDE Chess Rating</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex items-center justify-between text-xs text-slate-500 border-t border-slate-100">
+                            <span class="flex items-center"><i class="fa-solid fa-location-dot text-sage-600 mr-1.5"></i> Chișinău, Moldova</span>
+                            <span class="text-sage-700 font-semibold">Psychology & Pedagogy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About & Philosophy Section -->
+    <section id="about" class="py-20 bg-white border-y border-sage-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center space-y-4">
+                <h2 class="text-xs font-semibold uppercase tracking-wider text-sage-600">Academic Vision & Philosophy</h2>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">Cognitive Precision & Compassionate Care</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    My academic journey at <strong>UPS „Ion Creangă” din Chișinău</strong> combines deep study of psychological science with practical analytical discipline cultivated through years of competitive chess championships.
+                </p>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pillar 1 -->
+                <div class="p-8 rounded-2xl bg-cream-50 border border-cream-200 space-y-4 hover:border-sage-300 transition">
+                    <div class="w-12 h-12 rounded-xl bg-sage-600 text-white flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h4 class="font-serif font-bold text-xl text-slate-900">1. Cognitive Rigor</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Applying pattern recognition, working memory dynamics, and decision-making frameworks from cognitive science to evaluate behavioral patterns and stress responses.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="p-8 rounded-2xl bg-cream-50 border border-cream-200 space-y-4 hover:border-sage-300 transition">
+                    <div class="w-12 h-12 rounded-xl bg-sage-600 text-white flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                    </div>
+                    <h4 class="font-serif font-bold text-xl text-slate-900">2. Active Listening & Empathy</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Building authentic therapeutic rapport rooted in humanistic principles, active listening, and unconditional positive regard within youth and community counseling settings.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="p-8 rounded-2xl bg-cream-50 border border-cream-200 space-y-4 hover:border-sage-300 transition">
+                    <div class="w-12 h-12 rounded-xl bg-sage-600 text-white flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-microscope"></i>
+                    </div>
+                    <h4 class="font-serif font-bold text-xl text-slate-900">3. Empirical Research</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Committing to evidence-based interventions, psychometrics, and statistical research to understand psychological resilience among students and youth.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Narrative Box -->
+            <div class="mt-12 bg-sage-50/60 rounded-2xl p-8 border border-sage-100 max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-6">
+                <div class="w-16 h-16 rounded-2xl bg-sage-600 text-white flex items-center justify-center text-2xl flex-shrink-0">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="space-y-2 text-center md:text-left">
+                    <h5 class="font-serif font-bold text-lg text-slate-900">Academic Growth at UPS „Ion Creangă”</h5>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        At the Faculty of Psychology and Special Education, I engage deeply in developmental psychology, cognitive evaluation, and psychological counseling. My aim is to pursue advanced clinical specialization and contribute to mental health awareness initiatives across the Republic of Moldova.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Academic & Clinical CV -->
+    <section id="cv" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <h2 class="text-xs font-semibold uppercase tracking-wider text-sage-600">Curriculum Vitae</h2>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-1">Academic & Project Record</h3>
+            </div>
+            
+            <!-- Filters -->
+            <div class="mt-6 md:mt-0 flex flex-wrap gap-2" id="cv-filters">
+                <button onclick="filterCv('all')" class="cv-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-sage-600 text-white transition" data-filter="all">
+                    All
+                </button>
+                <button onclick="filterCv('education')" class="cv-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-sage-50 transition" data-filter="education">
+                    Education
+                </button>
+                <button onclick="filterCv('chess')" class="cv-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-sage-50 transition" data-filter="chess">
+                    Chess & Strategy
+                </button>
+                <button onclick="filterCv('volunteer')" class="cv-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-sage-50 transition" data-filter="volunteer">
+                    Community & Initiatives
+                </button>
+            </div>
+        </div>
+
+        <!-- Timeline / Cards Container -->
+        <div class="space-y-6" id="cv-items-container">
+
+            <!-- Item 1: Education -->
+            <div class="cv-item category-education bg-white rounded-2xl p-6 sm:p-8 border border-sage-100 card-soft-shadow hover:border-sage-300 transition">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="p-2.5 rounded-xl bg-sage-100 text-sage-700 text-sm">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </span>
+                        <div>
+                            <h4 class="font-serif font-bold text-xl text-slate-900">Bachelor's Degree in Psychology</h4>
+                            <p class="text-xs text-sage-600 font-semibold">Universitatea Pedagogică de Stat „Ion Creangă” din Chișinău (UPSC)</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium w-fit">2026 – Present</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-4">
+                    Specialized coursework in General Psychology, Developmental Psychology, Psychopathology, Cognitive Psychology, Educational Psychology, and Statistics. Enrolled with a top admission index score of <strong>9.43</strong>.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 rounded-lg bg-cream-100 text-slate-700 text-xs font-medium">Admission Index: 9.43</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-cream-100 text-slate-700 text-xs font-medium">Cognitive Science</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-cream-100 text-slate-700 text-xs font-medium">Psychometrics</span>
+                </div>
+            </div>
+
+            <!-- Item 2: Competitive Chess & Cognitive Discipline -->
+            <div class="cv-item category-chess bg-white rounded-2xl p-6 sm:p-8 border border-sage-100 card-soft-shadow hover:border-sage-300 transition">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="p-2.5 rounded-xl bg-amber-100 text-amber-800 text-sm">
+                            <i class="fa-solid fa-chess"></i>
+                        </span>
+                        <div>
+                            <h4 class="font-serif font-bold text-xl text-slate-900">FIDE Rated Chess Player (Moldova Chess Federation)</h4>
+                            <p class="text-xs text-amber-700 font-semibold">National Competitions & FIDE Tournaments • ID: 13920022</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium w-fit">2020 – Present</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-4">
+                    Competed in prestigious national events such as the <em>Campionatul Național al Republicii Moldova la Șah Clasic</em> and <em>Turneul Internațional Cupa Dmitrii Svetușkin</em>. Achieved a Peak FIDE Rating of 1892. Demonstrates sustained focus, calculation under cognitive pressure, and dynamic problem-solving.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-900 text-xs font-medium">FIDE Rating: 1892</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-900 text-xs font-medium">Executive Functioning</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-900 text-xs font-medium">Decision Theory</span>
+                </div>
+            </div>
+
+            <!-- Item 3: Volunteer & Peer Support Initiatives -->
+            <div class="cv-item category-volunteer bg-white rounded-2xl p-6 sm:p-8 border border-sage-100 card-soft-shadow hover:border-sage-300 transition">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="p-2.5 rounded-xl bg-blue-100 text-blue-700 text-sm">
+                            <i class="fa-solid fa-people-group"></i>
+                        </span>
+                        <div>
+                            <h4 class="font-serif font-bold text-xl text-slate-900">Youth & Student Peer Mentorship</h4>
+                            <p class="text-xs text-sage-600 font-semibold">Academic & Community Student Initiatives, Chișinău</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium w-fit">2025 – Present</span>
+                </div>
+                <ul class="list-disc list-inside text-sm text-slate-600 space-y-2 mb-4">
+                    <li>Participated in student orientation workshops, helping first-year students adapt to academic demands.</li>
+                    <li>Co-organized peer study sessions on research methodology and analytical thinking in psychology.</li>
+                    <li>Engaged in youth community events focused on emotional resilience and healthy coping strategies.</li>
+                </ul>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 text-xs font-medium">Peer Counseling</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 text-xs font-medium">Youth Leadership</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 text-xs font-medium">Mental Health Awareness</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Portfolio Showcase: Chess & Cognitive Science -->
+    <section id="showcase" class="py-20 bg-cream-100/50 border-y border-sage-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-xs font-semibold uppercase tracking-wider text-sage-600">Special Focus & Projects</h2>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">Chess, Cognition & Applied Science</h3>
+                <p class="text-slate-600">
+                    How competitive mind sports inform cognitive evaluation, working memory research, and emotional regulation in clinical and pedagogical psychology.
+                </p>
+            </div>
+
+            <!-- Grid of Showcase Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Showcase Item 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-sage-100 card-soft-shadow hover:shadow-xl transition flex flex-col group">
+                    <div class="h-48 bg-slate-900 p-6 flex flex-col justify-between text-white relative overflow-hidden">
+                        <div class="absolute -right-4 -bottom-4 text-slate-700/40 text-8xl font-serif">
+                            <i class="fa-solid fa-chess-knight"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-medium w-fit backdrop-blur-sm">Cognitive Analysis</span>
+                        <h4 class="font-serif font-bold text-xl relative z-10">Executive Function in High-Pressure Games</h4>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            A conceptual research project analyzing how rapid calculation in chess correlates with working memory span and cognitive inhibition under time stress.
+                        </p>
+                        <button onclick="openModal('modal-case-study')" class="w-full py-2.5 rounded-xl border border-sage-600 text-sage-700 text-sm font-semibold hover:bg-sage-600 hover:text-white transition flex items-center justify-center space-x-2">
+                            <span>Read Conceptual Note</span>
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Showcase Item 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-sage-100 card-soft-shadow hover:shadow-xl transition flex flex-col group">
+                    <div class="h-48 bg-sage-800 p-6 flex flex-col justify-between text-white relative overflow-hidden">
+                        <div class="absolute -right-4 -bottom-4 text-sage-700/40 text-8xl font-serif">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-medium w-fit backdrop-blur-sm">Clinical Tool</span>
+                        <h4 class="font-serif font-bold text-xl relative z-10">Stress Regulation & Heart-Rate Variability</h4>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            A framework examining emotional self-regulation techniques utilized by athletes and chess players to prevent physiological tilt during stressful encounters.
+                        </p>
+                        <button onclick="openModal('modal-research')" class="w-full py-2.5 rounded-xl border border-sage-600 text-sage-700 text-sm font-semibold hover:bg-sage-600 hover:text-white transition flex items-center justify-center space-x-2">
+                            <span>View Study Overview</span>
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Showcase Item 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-sage-100 card-soft-shadow hover:shadow-xl transition flex flex-col group">
+                    <div class="h-48 bg-sage-600 p-6 flex flex-col justify-between text-white relative overflow-hidden">
+                        <div class="absolute -right-4 -bottom-4 text-sage-500/40 text-8xl font-serif">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-medium w-fit backdrop-blur-sm">Psychoeducation</span>
+                        <h4 class="font-serif font-bold text-xl relative z-10">Mindset & Growth in Student Learning</h4>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            A student guide on adopting Carol Dweck's growth mindset, drawing parallels between chess post-game analysis and academic reflective learning.
+                        </p>
+                        <button onclick="openModal('modal-guide')" class="w-full py-2.5 rounded-xl border border-sage-600 text-sage-700 text-sm font-semibold hover:bg-sage-600 hover:text-white transition flex items-center justify-center space-x-2">
+                            <span>View Guide Details</span>
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Written Insights / Blog Section -->
+    <section id="articles" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <h2 class="text-xs font-semibold uppercase tracking-wider text-sage-600">Thought Leadership</h2>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-1">Articles & Academic Essays</h3>
+            </div>
+            <p class="text-sm text-slate-500 max-w-md mt-4 md:mt-0">
+                Reflections on cognitive psychology, youth mental health, and decision-making under stress.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Article 1 -->
+            <article class="bg-white rounded-2xl p-8 border border-sage-100 card-soft-shadow hover:border-sage-300 transition flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3 text-xs text-slate-500">
+                        <span class="px-2.5 py-1 rounded-md bg-sage-100 text-sage-800 font-medium">Cognitive Psychology</span>
+                        <span>•</span>
+                        <span>5 min read</span>
+                    </div>
+                    <h4 class="font-serif font-bold text-2xl text-slate-900 hover:text-sage-700 transition cursor-pointer" onclick="openModal('modal-article-1')">
+                        The Psychology of Calculation: What Chess Teaches Us About Human Decision-Making
+                    </h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        An analysis of Kahneman’s System 1 (fast intuition) and System 2 (slow calculation) in high-stakes environments, and how cognitive training enhances emotional self-control.
+                    </p>
+                </div>
+                <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                    <button onclick="openModal('modal-article-1')" class="text-sage-700 text-sm font-semibold hover:text-sage-900 transition flex items-center space-x-1">
+                        <span>Read Full Essay</span>
+                        <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="bg-white rounded-2xl p-8 border border-sage-100 card-soft-shadow hover:border-sage-300 transition flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3 text-xs text-slate-500">
+                        <span class="px-2.5 py-1 rounded-md bg-sage-100 text-sage-800 font-medium">Mental Health & Youth</span>
+                        <span>•</span>
+                        <span>6 min read</span>
+                    </div>
+                    <h4 class="font-serif font-bold text-2xl text-slate-900 hover:text-sage-700 transition cursor-pointer" onclick="openModal('modal-article-2')">
+                        Fostering Resilience Among University Students: A Psychological Perspective
+                    </h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Exploring protective factors against academic burnout, the role of social support structures at UPSC, and practical mindfulness techniques for students.
+                    </p>
+                </div>
+                <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                    <button onclick="openModal('modal-article-2')" class="text-sage-700 text-sm font-semibold hover:text-sage-900 transition flex items-center space-x-1">
+                        <span>Read Full Essay</span>
+                        <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                    </button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Key Competencies & Technical Skills -->
+    <section id="skills" class="py-20 bg-white border-t border-sage-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                <h2 class="text-xs font-semibold uppercase tracking-wider text-sage-600">Core Strengths</h2>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">Competencies & Toolkit</h3>
+                <p class="text-slate-600">
+                    A combination of academic rigor, cognitive discipline, active communication, and multilingual competence.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Category 1 -->
+                <div class="bg-cream-50 p-8 rounded-2xl border border-cream-200 space-y-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-sage-600 text-white flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-lg text-slate-900">Psychological & Clinical</h4>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-sage-600 text-xs"></i>
+                            <span>Active Listening & Communication</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-sage-600 text-xs"></i>
+                            <span>Cognitive Evaluation Principles</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-sage-600 text-xs"></i>
+                            <span>Developmental Psychology Concepts</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-sage-600 text-xs"></i>
+                            <span>Peer Support & Mentorship</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="bg-cream-50 p-8 rounded-2xl border border-cream-200 space-y-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-sage-600 text-white flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-chess-rook"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-lg text-slate-900">Analytical & Strategic</h4>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-sage-600 text-xs"></i>
+                            <span>Competitive Chess Calculation (FIDE 1892)</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-sage-600 text-xs"></i>
+                            <span>Decision-Making Under Time Pressure</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-sage-600 text-xs"></i>
+                            <span>Research & Survey Data Analysis</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-sage-600 text-xs"></i>
+                            <span>Critical Pattern Recognition</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="bg-cream-50 p-8 rounded-2xl border border-cream-200 space-y-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-sage-600 text-white flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-lg text-slate-900">Languages & Values</h4>
+                    </div>
+                    <div class="space-y-4 text-sm text-slate-700">
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>Romanian (Native)</span>
+                                <span class="text-sage-600">100%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-sage-600 h-full w-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>English (Advanced / Academic)</span>
+                                <span class="text-sage-600">90%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-sage-600 h-full w-[90%]"></div>
+                            </div>
+                        </div>
+                        <div class="pt-2 border-t border-cream-200 space-y-2">
+                            <span class="text-xs font-bold text-slate-800 uppercase block">Ethics</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2 py-1 rounded bg-white text-xs border border-slate-200">APA Ethics</span>
+                                <span class="px-2 py-1 rounded bg-white text-xs border border-slate-200">Integrity</span>
+                                <span class="px-2 py-1 rounded bg-white text-xs border border-slate-200">Confidentiality</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Connect Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            <div class="lg:col-span-5 space-y-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-sage-600">Get In Touch</span>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">Connect with Răzvan-Mihail</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    I welcome discussions regarding academic collaborations, student initiatives, clinical research projects, or youth mentorship opportunities in Chișinău and beyond.
+                </p>
+
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-center space-x-4 p-4 rounded-xl bg-white border border-sage-100">
+                        <div class="w-10 h-10 rounded-lg bg-sage-100 text-sage-700 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 uppercase font-semibold block">Email Contact</span>
+                            <button onclick="copyEmail('razvan.corman@upsc.md')" class="text-slate-800 font-medium hover:text-sage-700 transition flex items-center space-x-2">
+                                <span>razvan.corman@upsc.md</span>
+                                <i class="fa-regular fa-copy text-xs text-slate-400"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4 p-4 rounded-xl bg-white border border-sage-100">
+                        <div class="w-10 h-10 rounded-lg bg-sage-100 text-sage-700 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 uppercase font-semibold block">Institution</span>
+                            <span class="text-slate-800 font-medium">UPS „Ion Creangă” din Chișinău</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4 p-4 rounded-xl bg-white border border-sage-100">
+                        <div class="w-10 h-10 rounded-lg bg-sage-100 text-sage-700 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-chess"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 uppercase font-semibold block">FIDE Profile</span>
+                            <a href="https://ratings.fide.com/profile/13920022" target="_blank" rel="noopener" class="text-sage-700 font-medium hover:underline">
+                                FIDE ID: 13920022 (Moldova)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="lg:col-span-7 bg-white p-8 rounded-3xl border border-sage-100 card-soft-shadow">
+                <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Your Name</label>
+                            <input type="text" required placeholder="Prof. / Student Name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sage-600 focus:ring-2 focus:ring-sage-100 outline-none text-sm transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Email Address</label>
+                            <input type="email" required placeholder="email@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sage-600 focus:ring-2 focus:ring-sage-100 outline-none text-sm transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Subject</label>
+                        <select class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sage-600 focus:ring-2 focus:ring-sage-100 outline-none text-sm transition">
+                            <option>Academic / Student Collaboration</option>
+                            <option>Research Inquiry</option>
+                            <option>Chess & Cognitive Psychology Project</option>
+                            <option>General Connection</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Message</label>
+                        <textarea rows="4" required placeholder="Hello Răzvan..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sage-600 focus:ring-2 focus:ring-sage-100 outline-none text-sm transition"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-sage-600 text-white font-semibold hover:bg-sage-700 transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                        <span>Send Message</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-full bg-sage-600 text-white flex items-center justify-center font-serif font-bold text-sm">
+                    RC
+                </div>
+                <span class="font-serif font-bold text-white text-base">Răzvan-Mihail Corman</span>
+            </div>
+
+            <p class="text-xs text-slate-500">
+                &copy; 2026 Răzvan-Mihail Corman • UPS „Ion Creangă” din Chișinău.
+            </p>
+
+            <div class="flex space-x-6 text-slate-400 text-sm">
+                <a href="#hero" class="hover:text-white transition">Back to Top</a>
+                <a href="#about" class="hover:text-white transition">About</a>
+                <a href="#cv" class="hover:text-white transition">CV</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden transition-opacity duration-300" onclick="closeAllModals()"></div>
+
+    <!-- Modal 1 -->
+    <div id="modal-case-study" class="fixed inset-x-4 top-10 bottom-10 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-3xl bg-white rounded-3xl z-50 hidden overflow-hidden flex flex-col card-soft-shadow">
+        <div class="p-6 bg-slate-900 text-white flex justify-between items-center">
+            <div>
+                <span class="text-xs uppercase tracking-wider text-sage-300 font-semibold">Cognitive & Decision Science</span>
+                <h3 class="font-serif font-bold text-xl text-white">Executive Function Under Cognitive Pressure</h3>
+            </div>
+            <button onclick="closeAllModals()" class="p-2 text-sage-300 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="p-8 overflow-y-auto space-y-4 text-sm text-slate-700 leading-relaxed flex-1">
+            <h4 class="font-serif font-bold text-slate-900 text-base">Overview & Hypotheses</h4>
+            <p>
+                In competitive mind sports like chess, decision-making happens under strict time pressure (e.g., blitz vs. classical time controls). This paper explores how cognitive inhibition and working memory update loops allow expert decision-makers to suppress tempting sub-optimal choices ("blunders") under stress.
+            </p>
+            <p>
+                Applications in clinical and educational contexts include developing focus strategies for students experiencing test anxiety or cognitive overload during academic evaluations.
+            </p>
+        </div>
+        <div class="p-4 border-t border-slate-100 flex justify-end bg-slate-50">
+            <button onclick="closeAllModals()" class="px-5 py-2 rounded-xl bg-slate-200 text-slate-700 font-medium text-xs hover:bg-slate-300 transition">Close</button>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="modal-research" class="fixed inset-x-4 top-10 bottom-10 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-3xl bg-white rounded-3xl z-50 hidden overflow-hidden flex flex-col card-soft-shadow">
+        <div class="p-6 bg-sage-800 text-white flex justify-between items-center">
+            <div>
+                <span class="text-xs uppercase tracking-wider text-sage-200 font-semibold">Stress Regulation Model</span>
+                <h3 class="font-serif font-bold text-xl text-white">Managing Emotional Tilt in High-Stakes Environments</h3>
+            </div>
+            <button onclick="closeAllModals()" class="p-2 text-sage-200 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="p-8 overflow-y-auto space-y-4 text-sm text-slate-700 leading-relaxed flex-1">
+            <h4 class="font-serif font-bold text-slate-900 text-base">Physiological & Psychological Coping</h4>
+            <p>
+                When a mistake occurs during a competition or an exam, emotional "tilt" threatens subsequent decision-making. Through structured breathing, diaphragmatic pacing, and cognitive cognitive reframing, individuals can restore heart-rate variability and retain composure.
+            </p>
+        </div>
+        <div class="p-4 border-t border-slate-100 flex justify-end bg-slate-50">
+            <button onclick="closeAllModals()" class="px-5 py-2 rounded-xl bg-slate-200 text-slate-700 font-medium text-xs hover:bg-slate-300 transition">Close</button>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div id="modal-guide" class="fixed inset-x-4 top-10 bottom-10 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-3xl bg-white rounded-3xl z-50 hidden overflow-hidden flex flex-col card-soft-shadow">
+        <div class="p-6 bg-sage-600 text-white flex justify-between items-center">
+            <div>
+                <span class="text-xs uppercase tracking-wider text-sage-200 font-semibold">Psychoeducation Guide</span>
+                <h3 class="font-serif font-bold text-xl text-white">Growth Mindset & Learning Framework</h3>
+            </div>
+            <button onclick="closeAllModals()" class="p-2 text-sage-200 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="p-8 overflow-y-auto space-y-4 text-sm text-slate-700 leading-relaxed flex-1">
+            <p>
+                Post-event analysis (whether reviewing a chess game or an academic exam) converts perceived failure into actionable feedback. This guide provides step-by-step methods for students to reflect without self-criticism.
+            </p>
+        </div>
+        <div class="p-4 border-t border-slate-100 flex justify-end bg-slate-50">
+            <button onclick="closeAllModals()" class="px-5 py-2 rounded-xl bg-slate-200 text-slate-700 font-medium text-xs hover:bg-slate-300 transition">Close</button>
+        </div>
+    </div>
+
+    <!-- Article Modals -->
+    <div id="modal-article-1" class="fixed inset-x-4 top-10 bottom-10 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-3xl bg-white rounded-3xl z-50 hidden overflow-hidden flex flex-col card-soft-shadow">
+        <div class="p-6 bg-slate-900 text-white flex justify-between items-center">
+            <div>
+                <span class="text-xs uppercase tracking-wider text-sage-300 font-semibold">Essay Publication</span>
+                <h3 class="font-serif font-bold text-xl text-white">The Psychology of Calculation</h3>
+            </div>
+            <button onclick="closeAllModals()" class="p-2 text-slate-300 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="p-8 overflow-y-auto space-y-4 text-slate-700 leading-relaxed font-serif flex-1">
+            <p>
+                Decision-making under pressure requires a delicate balance between intuitive pattern recognition and rigorous logical calculation. In psychology, understanding how individuals maintain focus amidst distraction is crucial for both academic performance and clinical well-being.
+            </p>
+        </div>
+        <div class="p-4 border-t border-slate-100 flex justify-end bg-slate-50 font-sans">
+            <button onclick="closeAllModals()" class="px-5 py-2 rounded-xl bg-slate-200 text-slate-700 font-medium text-xs hover:bg-slate-300 transition">Close Article</button>
+        </div>
+    </div>
+
+    <div id="modal-article-2" class="fixed inset-x-4 top-10 bottom-10 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-3xl bg-white rounded-3xl z-50 hidden overflow-hidden flex flex-col card-soft-shadow">
+        <div class="p-6 bg-slate-900 text-white flex justify-between items-center">
+            <div>
+                <span class="text-xs uppercase tracking-wider text-sage-300 font-semibold">Essay Publication</span>
+                <h3 class="font-serif font-bold text-xl text-white">Student Resilience & Wellbeing</h3>
+            </div>
+            <button onclick="closeAllModals()" class="p-2 text-slate-300 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="p-8 overflow-y-auto space-y-4 text-slate-700 leading-relaxed font-serif flex-1">
+            <p>
+                University transition presents significant cognitive and socio-emotional demands. Developing strong peer networks, setting clear academic milestones, and practicing self-compassion are vital protective factors for mental health.
+            </p>
+        </div>
+        <div class="p-4 border-t border-slate-100 flex justify-end bg-slate-50 font-sans">
+            <button onclick="closeAllModals()" class="px-5 py-2 rounded-xl bg-slate-200 text-slate-700 font-medium text-xs hover:bg-slate-300 transition">Close Article</button>
+        </div>
+    </div>
+
+    <!-- CV Modal -->
+    <div id="modal-cv" class="fixed inset-x-4 top-10 bottom-10 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-2xl bg-white rounded-3xl z-50 hidden overflow-hidden flex flex-col card-soft-shadow">
+        <div class="p-6 bg-sage-700 text-white flex justify-between items-center">
+            <div>
+                <span class="text-xs uppercase tracking-wider text-sage-200 font-semibold">Curriculum Vitae</span>
+                <h3 class="font-serif font-bold text-xl text-white">Răzvan-Mihail Corman - Academic CV</h3>
+            </div>
+            <button onclick="closeAllModals()" class="p-2 text-sage-200 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="p-8 overflow-y-auto space-y-6 text-sm text-slate-700 leading-relaxed flex-1">
+            <p class="text-slate-600">
+                You can print or download the formatted curriculum vitae summary directly from your browser.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button onclick="triggerCvDownload()" class="p-6 rounded-2xl bg-cream-50 border border-cream-200 hover:border-sage-600 hover:bg-sage-50 transition text-left space-y-2 group">
+                    <i class="fa-solid fa-file-pdf text-3xl text-sage-600 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-slate-900">Academic & Project CV</h4>
+                    <p class="text-xs text-slate-500">Includes coursework at UPSC Chișinău, competitive chess achievements, and initiatives.</p>
+                </button>
+
+                <button onclick="window.print()" class="p-6 rounded-2xl bg-cream-50 border border-cream-200 hover:border-sage-600 hover:bg-sage-50 transition text-left space-y-2 group">
+                    <i class="fa-solid fa-print text-3xl text-sage-600 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-slate-900">Print / Web View</h4>
+                    <p class="text-xs text-slate-500">Generates a clean print-friendly summary.</p>
+                </button>
+            </div>
+        </div>
+        <div class="p-4 border-t border-slate-100 flex justify-end bg-slate-50">
+            <button onclick="closeAllModals()" class="px-5 py-2 rounded-xl bg-slate-200 text-slate-700 font-medium text-xs hover:bg-slate-300 transition">Close</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 text-xs font-medium flex items-center space-x-2">
+        <i class="fa-solid fa-circle-check text-sage-400 text-sm" id="toast-icon"></i>
+        <span id="toast-message">Action completed successfully.</span>
+    </div>
+
+    <script>
+        function filterCv(category) {
+            const items = document.querySelectorAll('.cv-item');
+            const buttons = document.querySelectorAll('.cv-filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                    btn.classList.add('bg-sage-600', 'text-white');
+                } else {
+                    btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                    btn.classList.remove('bg-sage-600', 'text-white');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(`category-${category}`)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function openModal(modalId) {
+            document.getElementById('modal-backdrop').classList.remove('hidden');
+            const targetModal = document.getElementById(modalId);
+            if (targetModal) {
+                targetModal.classList.remove('hidden');
+            }
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openCvModal() {
+            openModal('modal-cv');
+        }
+
+        function closeAllModals() {
+            document.getElementById('modal-backdrop').classList.add('hidden');
+            const modals = ['modal-case-study', 'modal-research', 'modal-guide', 'modal-article-1', 'modal-article-2', 'modal-cv'];
+            modals.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
+            });
+            document.body.style.overflow = 'auto';
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        function copyEmail(email) {
+            const tempInput = document.createElement('input');
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast("Email copied to clipboard!");
+            } catch (err) {
+                showToast("Copied: " + email);
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        function triggerCvDownload() {
+            showToast("Preparing Academic CV download...");
+            setTimeout(() => {
+                showToast("CV ready!");
+                closeAllModals();
+            }, 1000);
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast("Thank you! Message sent successfully.");
+            e.target.reset();
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAllModals();
+            }
+        });
+    </script>
+</body>
+</html>
