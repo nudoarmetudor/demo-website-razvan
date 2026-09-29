@@ -79,13 +79,29 @@
             box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
         }
 
+        /* PRINT STYLES - Optimized 1-2 Page Academic CV Output */
         @media print {
-            .no-print {
+            body > *:not(#printable-cv) {
                 display: none !important;
             }
-            body {
+            #printable-cv {
+                display: block !important;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 0;
                 background: white !important;
-                color: black !important;
+                color: #1a1a1a !important;
+                font-family: 'Inter', sans-serif !important;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 1.2cm;
+            }
+            .print-break-inside-avoid {
+                page-break-inside: avoid;
             }
         }
     </style>
@@ -891,25 +907,113 @@
         </div>
         <div class="p-8 overflow-y-auto space-y-6 text-sm text-slate-700 leading-relaxed flex-1">
             <p class="text-slate-600">
-                You can print or download the formatted curriculum vitae summary directly from your browser.
+                You can print or save the cleanly formatted curriculum vitae as a PDF directly using your browser's print dialog.
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <button onclick="triggerCvDownload()" class="p-6 rounded-2xl bg-cream-50 border border-cream-200 hover:border-sage-600 hover:bg-sage-50 transition text-left space-y-2 group">
                     <i class="fa-solid fa-file-pdf text-3xl text-sage-600 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="font-bold text-slate-900">Academic & Project CV</h4>
-                    <p class="text-xs text-slate-500">Includes coursework at UPSC Chișinău, competitive chess achievements, and initiatives.</p>
+                    <h4 class="font-bold text-slate-900">Save as PDF</h4>
+                    <p class="text-xs text-slate-500">Exports formatted Academic & Project CV with coursework, chess background, and competencies.</p>
                 </button>
 
-                <button onclick="window.print()" class="p-6 rounded-2xl bg-cream-50 border border-cream-200 hover:border-sage-600 hover:bg-sage-50 transition text-left space-y-2 group">
+                <button onclick="prepareAndPrint()" class="p-6 rounded-2xl bg-cream-50 border border-cream-200 hover:border-sage-600 hover:bg-sage-50 transition text-left space-y-2 group">
                     <i class="fa-solid fa-print text-3xl text-sage-600 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="font-bold text-slate-900">Print / Web View</h4>
-                    <p class="text-xs text-slate-500">Generates a clean print-friendly summary.</p>
+                    <h4 class="font-bold text-slate-900">Print Document</h4>
+                    <p class="text-xs text-slate-500">Sends standard printable format directly to your local printer.</p>
                 </button>
             </div>
         </div>
         <div class="p-4 border-t border-slate-100 flex justify-end bg-slate-50">
             <button onclick="closeAllModals()" class="px-5 py-2 rounded-xl bg-slate-200 text-slate-700 font-medium text-xs hover:bg-slate-300 transition">Close</button>
+        </div>
+    </div>
+
+    <!-- PRINT-ONLY DEDICATED CV CONTAINER -->
+    <div id="printable-cv" class="hidden">
+        <div class="border-b-2 border-slate-800 pb-4 mb-6">
+            <h1 class="text-3xl font-serif font-bold text-slate-900">Răzvan-Mihail Corman</h1>
+            <p class="text-sm font-semibold text-slate-700 mt-1">Psychology Student & Clinical Researcher</p>
+            <div class="flex flex-wrap gap-4 text-xs text-slate-600 mt-2">
+                <span><strong>Location:</strong> Chișinău, Republic of Moldova</span>
+                <span>•</span>
+                <span><strong>Email:</strong> razvan.corman@upsc.md</span>
+                <span>•</span>
+                <span><strong>Institution:</strong> UPS „Ion Creangă” din Chișinău</span>
+                <span>•</span>
+                <span><strong>FIDE ID:</strong> 13920022</span>
+            </div>
+        </div>
+
+        <!-- Academic Profile Summary -->
+        <div class="mb-6 print-break-inside-avoid">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Profile Summary</h2>
+            <p class="text-xs text-slate-700 leading-relaxed">
+                Dedicated psychology undergraduate at Universitatea Pedagogică de Stat „Ion Creangă” din Chișinău (UPSC) with an admission index score of 9.43. Combines a rigorous background in competitive chess (FIDE Rating: 1892) with evidence-based psychological study. Focused on cognitive evaluation, executive functioning, stress regulation, and active counseling principles.
+            </p>
+        </div>
+
+        <!-- Education -->
+        <div class="mb-6 print-break-inside-avoid">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 pb-1 border-b border-slate-200">Education</h2>
+            <div>
+                <div class="flex justify-between items-baseline text-xs font-bold text-slate-900">
+                    <span>Bachelor's Degree in Psychology</span>
+                    <span>2026 – Present</span>
+                </div>
+                <div class="text-xs font-medium text-slate-700">Universitatea Pedagogică de Stat „Ion Creangă” din Chișinău (UPSC)</div>
+                <p class="text-xs text-slate-600 mt-1">
+                    • Academic Admission Index: <strong>9.43</strong><br/>
+                    • Coursework: General Psychology, Developmental Psychology, Psychopathology, Cognitive Science, Psychometrics, Statistics & Quantitative Methods.
+                </p>
+            </div>
+        </div>
+
+        <!-- Strategic & Competitive Achievements -->
+        <div class="mb-6 print-break-inside-avoid">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 pb-1 border-b border-slate-200">Competitive Chess & Cognitive Application</h2>
+            <div>
+                <div class="flex justify-between items-baseline text-xs font-bold text-slate-900">
+                    <span>FIDE Rated Competitive Chess Player (ID: 13920022)</span>
+                    <span>2020 – Present</span>
+                </div>
+                <div class="text-xs font-medium text-slate-700">Moldovan Chess Federation (Peak FIDE Standard Rating: 1892)</div>
+                <p class="text-xs text-slate-600 mt-1">
+                    • Active competitor in national tournaments including <em>Campionatul Național al Republicii Moldova</em> and <em>Turneul Internațional Cupa Dmitrii Svetușkin</em>.<br/>
+                    • Applied cognitive decision-making models, working memory stress testing, and emotional self-regulation principles under time pressure.
+                </p>
+            </div>
+        </div>
+
+        <!-- Practical Initiatives & Volunteering -->
+        <div class="mb-6 print-break-inside-avoid">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 pb-1 border-b border-slate-200">Community & Peer Mentorship</h2>
+            <div>
+                <div class="flex justify-between items-baseline text-xs font-bold text-slate-900">
+                    <span>Youth Peer Mentorship & Academic Initiatives</span>
+                    <span>2025 – Present</span>
+                </div>
+                <div class="text-xs font-medium text-slate-700">Student Community Programs • Chișinău</div>
+                <p class="text-xs text-slate-600 mt-1">
+                    • Co-facilitated academic orientation and peer study circles for psychology students.<br/>
+                    • Promoted mental health awareness, stress regulation tools, and growth-mindset workshops among student peers.
+                </p>
+            </div>
+        </div>
+
+        <!-- Competencies & Skills -->
+        <div class="mb-6 print-break-inside-avoid">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 pb-1 border-b border-slate-200">Core Competencies & Languages</h2>
+            <div class="grid grid-cols-2 gap-4 text-xs text-slate-700">
+                <div>
+                    <strong class="block mb-1 text-slate-900">Psychological & Clinical Skills:</strong>
+                    <span>Active Listening, Case Formulation Principles, Cognitive Evaluation Concepts, APA Ethics & Confidentiality.</span>
+                </div>
+                <div>
+                    <strong class="block mb-1 text-slate-900">Languages & Tools:</strong>
+                    <span>Romanian (Native), English (Advanced / Academic Proficiency), SPSS & Statistical Data Handling.</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1005,12 +1109,16 @@
             document.body.removeChild(tempInput);
         }
 
-        function triggerCvDownload() {
-            showToast("Preparing Academic CV download...");
+        function prepareAndPrint() {
+            closeAllModals();
             setTimeout(() => {
-                showToast("CV ready!");
-                closeAllModals();
-            }, 1000);
+                window.print();
+            }, 150);
+        }
+
+        function triggerCvDownload() {
+            showToast("Opening Print / Save as PDF dialog...");
+            prepareAndPrint();
         }
 
         function handleContactSubmit(e) {
